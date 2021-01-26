@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#F7E600"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#448AFF"
+        android:text="대상언어"
+        android:textColor="#ffffff"
+        android:layout_margin="5dp"
+        android:id="@+id/btnSrc" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textAlignment="center"
+        android:hint="번역할 문장을 입력해주세요."
+        android:background="#FFFFFF"
+        android:id="@+id/textSource"
+        android:layout_marginHorizontal="5dp"
+        android:layout_weight="7" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#448AFF"
+        android:layout_margin="5dp"
+        android:text="결과언어"
+        android:textColor="#ffffff"
+        android:id="@+id/btnTarget" />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/textTarget"
+        android:background="#ffffff"
+        android:layout_height="0dp"
+        android:textAlignment="center"
+        android:layout_marginHorizontal="5dp"
+        android:layout_weight="7" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FF5252"
+        android:layout_margin="5dp"
+        android:text="번역하기"
+        android:textColor="#ffffff"
+        android:id="@+id/btnTransStart" />
+
+
+</LinearLayout>
