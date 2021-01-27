@@ -86,6 +86,9 @@ class MainActivity : AppCompatActivity() {
             }else if (TextUtils.isEmpty(textSource.text.toString())) {
                 Toast.makeText(applicationContext, "내용을 입력해주세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
+            }else if (srcLanguage.equals(targetLanguage)) {
+                Toast.makeText(applicationContext, "설정을 다시 확인해주세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
 
