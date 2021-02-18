@@ -25,7 +25,12 @@ class MainActivity : AppCompatActivity() {
         val handler = object : Handler(Looper.getMainLooper()) {
             override fun handleMessage(msg: Message) {
                 val result = msg.obj as String
-                textTarget.setText(result.toString())
+                if (result.startsWith("..")) {
+                    Toast.makeText(applicationContext, "언어설정이 잘못되었습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    textTarget.setText(result.toString())
+                }
             }
         }
 
@@ -80,13 +85,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnTransStart.setOnClickListener {
+
             if (TextUtils.isEmpty(srcLanguage) || TextUtils.isEmpty(targetLanguage)) {
                 Toast.makeText(applicationContext, "설정을 완료해주세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }else if (TextUtils.isEmpty(textSource.text.toString())) {
+            } else if (TextUtils.isEmpty(textSource.text.toString())) {
                 Toast.makeText(applicationContext, "내용을 입력해주세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }else if (srcLanguage.equals(targetLanguage)) {
+            } else if (srcLanguage.equals(targetLanguage)) {
                 Toast.makeText(applicationContext, "설정을 다시 확인해주세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -125,12 +131,25 @@ class MainActivity : AppCompatActivity() {
                     Log.e("sb", sb.toString())
 
                     val data = JSONObject(sb.toString())
-                    val result = data.getString("translated_text")
+//                    val result = data.getString("translated_text")
+                    val resultTextArray = data.getJSONArray("translated_text")
 
-                    Log.e("result", result.toString())
+                    var final_Result: String = ""
+
+                    Log.e("resultTextArray", resultTextArray.toString())
+
+                    for (i in 0 until resultTextArray.length()) {
+                        val resultLine: String = resultTextArray.get(i).toString()
+                        val substring = resultLine.substring(2, resultLine.length - 2)
+                        final_Result = final_Result + substring + "\n"
+                    }
+                    Log.e("final_Result", final_Result)
+
+
+//                    Log.e("result", result.toString())
 
                     val msg = Message()
-                    msg.obj = result
+                    msg.obj = final_Result
 
                     handler.sendMessage(msg)
 
